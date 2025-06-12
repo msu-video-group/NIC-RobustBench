@@ -1,0 +1,11 @@
+# Python compiled
+*.pyc
+
+# Model checkpoints
+*.pt
+*.pth
+*.pth.1
+*.mat
+
+#mac
+**/.DS_Store

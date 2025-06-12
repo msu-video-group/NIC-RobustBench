@@ -1,0 +1,323 @@
+methods-pipeline-generator:
+  tags:
+    - storage
+  extends: .common
+  stage: .pre
+  script:
+    - apk add --no-cache bash
+    - ./scripts/attack-generate-pipeline.sh generate
+  artifacts:
+    paths:
+      - "pipeline-*.yml"
+
+
+.method:trigger:
+  stage: test
+  trigger:
+    strategy: depend
+  allow_failure: false
+
+
+madc:
+  extends: .method:trigger
+  trigger:
+    include:
+      - artifact: pipeline-madc.yml
+        job: methods-pipeline-generator
+  rules:
+    - if: $madc == "yes"
+      when: on_success
+    - when: manual
+    
+ifgsm:
+  extends: .method:trigger
+  trigger:
+    include:
+      - artifact: pipeline-ifgsm.yml
+        job: methods-pipeline-generator
+  rules:
+    - if: $ifgsm == "yes"
+      when: on_success
+    - when: manual
+
+pgd-ifgsm:
+  extends: .method:trigger
+  trigger:
+    include:
+      - artifact: pipeline-pgd-ifgsm.yml
+        job: methods-pipeline-generator
+  rules:
+    - if: $pgd_ifgsm == "yes"
+      when: on_success
+    - when: manual
+      
+# uap:
+#   extends: .method:trigger
+#   trigger:
+#     include:
+#       - artifact: pipeline-uap.yml
+#         job: methods-pipeline-generator
+#   rules:
+#     - if: $uap == "yes"
+#       when: on_success
+#     - when: manual  
+
+korhonen-et-al:
+  extends: .method:trigger
+  trigger:
+    include:
+      - artifact: pipeline-korhonen-et-al.yml
+        job: methods-pipeline-generator
+  rules:
+    - if: $korhonen_et_al == "yes"
+      when: on_success
+    - when: manual
+
+
+# zhang-et-al-dists:
+#   extends: .method:trigger
+#   trigger:
+#     include:
+#       - artifact: pipeline-zhang-et-al-dists.yml
+#         job: methods-pipeline-generator
+#   rules:
+#     - if: $zhang_et_al_dists == "yes"
+#       when: on_success
+#     - when: manual
+#########
+
+# onepixel:
+#   extends: .method:trigger
+#   trigger:
+#     include:
+#       - artifact: pipeline-onepixel.yml
+#         job: methods-pipeline-generator
+#   rules:
+#     - if: $onepixel == "yes"
+#       when: on_success
+#     - when: manual
+ 
+#######
+# cnn-attack:
+#   extends: .method:trigger
+#   trigger:
+#     include:
+#       - artifact: pipeline-cnn-attack.yml
+#         job: methods-pipeline-generator
+#   rules:
+#     - if: $cnn_attack == "yes"
+#       when: on_success
+#     - when: manual
+
+ssah:
+  extends: .method:trigger
+  trigger:
+    include:
+      - artifact: pipeline-ssah.yml
+        job: methods-pipeline-generator
+  rules:
+    - if: $ssah == "yes"
+      when: on_success
+    - when: manual
+
+
+cadv:
+  extends: .method:trigger
+  trigger:
+    include:
+      - artifact: pipeline-cadv.yml
+        job: methods-pipeline-generator
+  rules:
+    - if: $cadv == "yes"
+      when: on_success
+    - when: manual
+    
+random-noise:
+  extends: .method:trigger
+  trigger:
+    include:
+      - artifact: pipeline-random-noise.yml
+        job: methods-pipeline-generator
+  rules:
+    - if: $random_noise == "yes"
+      when: on_success
+    - when: manual
+
+ftda:
+  extends: .method:trigger
+  trigger:
+    include:
+      - artifact: pipeline-ftda.yml
+        job: methods-pipeline-generator
+  rules:
+    - if: $ftda == "yes"
+      when: on_success
+    - when: manual
+
+ftda-randn-init:
+  extends: .method:trigger
+  trigger:
+    include:
+      - artifact: pipeline-ftda-randn-init.yml
+        job: methods-pipeline-generator
+  rules:
+    - if: $ftda_randn_init == "yes"
+      when: on_success
+    - when: manual
+
+madc-randn-init:
+  extends: .method:trigger
+  trigger:
+    include:
+      - artifact: pipeline-madc-randn-init.yml
+        job: methods-pipeline-generator
+  rules:
+    - if: $madc_randn_init == "yes"
+      when: on_success
+    - when: manual
+
+madc-linf:
+  extends: .method:trigger
+  trigger:
+    include:
+      - artifact: pipeline-madc-linf.yml
+        job: methods-pipeline-generator
+  rules:
+    - if: $madc_linf == "yes"
+      when: on_success
+    - when: manual
+
+ftda-linf:
+  extends: .method:trigger
+  trigger:
+    include:
+      - artifact: pipeline-ftda-linf.yml
+        job: methods-pipeline-generator
+  rules:
+    - if: $ftda_linf == "yes"
+      when: on_success
+    - when: manual
+
+madc-norm:
+  extends: .method:trigger
+  trigger:
+    include:
+      - artifact: pipeline-madc-norm.yml
+        job: methods-pipeline-generator
+  rules:
+    - if: $madc_norm == "yes"
+      when: on_success
+    - when: manual
+
+mad-mix:
+  extends: .method:trigger
+  trigger:
+    include:
+      - artifact: pipeline-mad-mix.yml
+        job: methods-pipeline-generator
+  rules:
+    - if: $mad_mix == "yes"
+      when: on_success
+    - when: manual
+
+ssah-randn-init:
+  extends: .method:trigger
+  trigger:
+    include:
+      - artifact: pipeline-ssah-randn-init.yml
+        job: methods-pipeline-generator
+  rules:
+    - if: $ssah_randn_init == "yes"
+      when: on_success
+    - when: manual
+
+noattack:
+  extends: .method:trigger
+  trigger:
+    include:
+      - artifact: pipeline-noattack.yml
+        job: methods-pipeline-generator
+  rules:
+    - if: $noattack == "yes"
+      when: on_success
+    - when: manual
+
+# # diff-evolve-uap:
+# #   extends: .method:trigger
+# #   trigger:
+# #     include:
+# #       - artifact: pipeline-diff-evolve-uap.yml
+# #         job: methods-pipeline-generator
+# #   rules:
+# #     - if: $diff_evolve_uap == "yes"
+# #       when: on_success
+# #     - when: manual
+
+
+# stadv:
+#   extends: .method:trigger
+#   trigger:
+#     include:
+#       - artifact: pipeline-stadv.yml
+#         job: methods-pipeline-generator
+#   rules:
+#     - if: $stadv == "yes"
+#       when: on_success
+#     - when: manual
+
+# square-attack:
+#   extends: .method:trigger
+#   trigger:
+#     include:
+#       - artifact: pipeline-square-attack.yml
+#         job: methods-pipeline-generator
+#   rules:
+#     - if: $square_attack == "yes"
+#       when: on_success
+#     - when: manual
+    
+# grad-est:
+#   extends: .method:trigger
+#   trigger:
+#     include:
+#       - artifact: pipeline-grad-est.yml
+#         job: methods-pipeline-generator
+#   rules:
+#     - if: $grad_est == "yes"
+#       when: on_success
+#     - when: manual
+
+
+# parsimonious:
+#   extends: .method:trigger
+#   trigger:
+#     include:
+#       - artifact: pipeline-parsimonious.yml
+#         job: methods-pipeline-generator
+#   rules:
+#     - if: $parsimonious == "yes"
+#       when: on_success
+#     - when: manual
+
+
+# patch-rs:
+#   extends: .method:trigger
+#   trigger:
+#     include:
+#       - artifact: pipeline-patch-rs.yml
+#         job: methods-pipeline-generator
+#   rules:
+#     - if: $patch_rs == "yes"
+#       when: on_success
+#     - when: manual
+
+# frame-rs:
+#   extends: .method:trigger
+#   trigger:
+#     include:
+#       - artifact: pipeline-frame-rs.yml
+#         job: methods-pipeline-generator
+#   rules:
+#     - if: $frame_rs == "yes"
+#       when: on_success
+#     - when: manual
