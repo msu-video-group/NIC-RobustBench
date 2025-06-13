@@ -21,13 +21,10 @@ else
          https://titan.gml-team.ru:5003/fsdownload/o3kmmUJdU/models.zip && rm models.zip.1
 fi
 
-# mapfile -t codecs < $codec_list_path
-# attacks=("${attack_name}")
+echo -e "\e[1mMake sure that each dataset subfolder contains at least one image!\e[0m"
+echo "TEST_DATASET_NAMES: ${TEST_DATASET_NAMES[@]}"
+echo "TEST_DATASET_PATHS: ${TEST_DATASET_PATHS[@]}"
 
-# GPU_CURRENT=0
-# echo "Loss ${loss_name}"
-# for codec in "${codecs[@]}"; do
-#     for attack in "${attacks[@]}"; do
 if [[ $codec == *"jpegai"* ]]; then
     echo "${codec} - ${attack} Starting JPEGAI job"
     docker run --gpus "device=${GPU_CURRENT}" --ipc host --rm \
@@ -46,7 +43,3 @@ else
         bash -c "cp ${CONTAINER_SCRIPTS_PATH}/docker_script.sh ./ && chmod 777 ./docker_script.sh && ./docker_script.sh ${codec} ${attack} ${attack_preset} ${loss_name} ${CONTAINER_ENV_VARS_PATH}" &
 fi
 wait
-#         GPU_CURRENT=$(( GPU_CURRENT + 1 ))
-#     done
-# done
-# wait
