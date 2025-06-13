@@ -9,7 +9,7 @@ A Comprehensive Open-Source Toolkit for Neural Image Compression and Robustness 
 - **7 Adversarial Attack Algorithms** with **12 loss functions**  
 - **Plug-and-Play API** — add your own codec or attack in <50 LOC  
 - **One-command Experiments** via Docker + `launch.sh`  
-- Tested on **NVIDIA A100 80 GB** 
+- **Three launching options** — Docker, Slurm and GitLab CI/CD
 
 ## :whale: Prerequisites
 - Docker 23+ with NVIDIA Container Toolkit
@@ -17,6 +17,7 @@ A Comprehensive Open-Source Toolkit for Neural Image Compression and Robustness 
 - We provide Dockerfiles with complete list of requirements
 
 ## :zap: Quick Start
+Visit [GitLab repository](https://vg-code.gml-team.ru/framework/codecs-robustness) to find out more about GitLab CI/CD launch.
 
 ```bash
 # Download source code
@@ -27,6 +28,7 @@ cd NIC-RobustBench
 # if you change image names, please change DOCKER_IMAGE and DOCKER_IMAGE_JPEGAI variables accordingly in launch.sh script
 sudo docker build -f main.Dockerfile -t codecs_main . 
 sudo docker build -f jpegai.Dockerfile -t codecs_jpegai .
+# note that building can take up to 20-30 minutes
  
 # run attack
 chmod +x launch.sh
@@ -34,6 +36,11 @@ chmod +x launch.sh
 
 # example of launching
 ./launch.sh 0 bpp_increase_loss random-noise jpegai-v51-hop-b05 0
+
+# to launch a set of attacks/codecs you can edit launch_all.sh script
+# configure launch_all.sh to run desired attacks/codecs 
+chmod +x launch.sh launch_all.sh
+./launch_all.sh
 ```
 
 Be aware that the first time script is launching it will download all necessary weights of about 10 Gb. To download them manually run in the root of directory:

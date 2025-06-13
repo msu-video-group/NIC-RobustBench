@@ -5,6 +5,8 @@ This directory contains one subfolder per neural image codec implementation. A f
 - A **Dockerfile** that installs all codec-specific dependencies.
 - A **src/** directory containing the `CodecModel` wrapper around the actual codec implementation.
 
+Some NIC models implementations are from [CompressAI toolkit](https://github.com/InterDigitalInc/CompressAI).
+
 ---
 
 ## Folder Structure
