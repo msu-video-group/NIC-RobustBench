@@ -18,8 +18,6 @@ A mini-library of differentiable loss terms for image-compression and FTDA exper
   * **Experimental** focus loss: `pointwise_added_noises_loss()` applies a Gaussian-blur mask around a chosen pixel.
 * **Registry** – `loss_name_2_func` lets training scripts pick a loss by string key.
 
-> *Tip*: all MSE-style functions return **negative values** so that *maximising* the objective increases quality—mention this quirk elsewhere in the docs to avoid confusion.
-
 ---
 
 ### `codec_metrics.py`
@@ -151,8 +149,6 @@ Tiny wrapper layer that standardises all **quality-metric calls** used in the pi
 | `MSSSIM`             | Multiscale SSIM using **pytorch-msssim** (GPU-friendly).                              |
 | `vmaf`          | **VMAF** via FFmpeg/`libvmaf`. Saves temp PNGs, runs subprocess, parses the JSON log. |
 | `niqe`             | Thin `torch.nn.Module` that wraps **piq**’s NIQE (`lower_better=True`).               |
-
-> **Tip**: all helpers return **Python scalars** (except `vmaf`, which returns a 0-D tensor) so they can drop straight into NumPy/Pandas without type juggling.
 
 ---
 
