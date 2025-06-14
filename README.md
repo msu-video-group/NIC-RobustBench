@@ -35,10 +35,10 @@ chmod +x launch.sh
 ./launch.sh {attack_preset} {loss_name} {attack_name} {codec_name} {defence_name} {gpu_id}
 
 # example of launching
-./launch.sh 0 bpp_increase_loss random-noise jpegai-v51-hop-b05 0
+./launch.sh 0 bpp_increase_loss random-noise jpegai-v51-hop-b05 reversible_flip 0
 
-# to launch a set of attacks/codecs you can edit launch_all.sh script
-# configure launch_all.sh to run desired attacks/codecs 
+# to launch a set of attacks/codecs/defences you can edit launch_all.sh script
+# configure launch_all.sh to run desired attacks/codecs/defences 
 chmod +x launch.sh launch_all.sh
 ./launch_all.sh
 ```

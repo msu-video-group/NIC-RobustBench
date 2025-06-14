@@ -4,7 +4,7 @@ set -euo pipefail
 codecs=("jpegai-v71-bop-b0012" "cheng2020-attn-4")
 attacks=("ftda" "madc")
 losses=("bpp_increase_loss")
-defences=("reversible_flip")
+defences=("no_defence")
 attack_preset=0
 gpu_id=0
 
