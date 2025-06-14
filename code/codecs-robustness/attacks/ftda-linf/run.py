@@ -89,7 +89,7 @@ def attack(compress_image, model=None, device='cpu', is_jpegai=False, loss_func=
                 opt_d.step()
                 resid = (p).abs()
                 loss_dist_l_inf = (resid).max()
-                print("LESS", loss_dist_l_inf)
+                # print("LESS", loss_dist_l_inf)
 
 
     res_image = compress_image + p

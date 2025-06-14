@@ -4,7 +4,8 @@ codec_name=$1
 attack_name=$2
 attack_preset=$3
 loss_name=$4
-env_vars_path=$5
+defence_name=$5
+env_vars_path=$6
 
 source "/test/code/codecs-robustness/scripts-docker/env_vars.sh"
 
@@ -14,6 +15,7 @@ echo "Codec name ${codec_name}"
 echo "Attack name ${attack_name}"
 echo "Attack preset ${attack_preset}"
 echo "Loss name ${loss_name}"
+echo "Defence name: ${defence_name}"
 echo "Artifacts path: ${artifacts_path}"
 python -c "import os; print('number of cpus: ', len(os.sched_getaffinity(0)))"
 
@@ -22,13 +24,13 @@ cp -a "${REPO_CONTAINER_PATH}/codecs/${codec_name}/." "./"
 rm Dockerfile
 
 # apt-get install -qq -y libopenjp2-7-dev
-# pip3 install -qq glymur==0.9.3
+pip3 install -qq geotorch torchdiffeq tensorboardX
 
 cp config.json ./src
 
 cp -a "${REPO_CONTAINER_PATH}/attacks/utils/." ./
 cp "${REPO_CONTAINER_PATH}/attacks/${attack_name}/run.py" "./run.py"
-cp -a "${REPO_CONTAINER_PATH}/defences/no_defence/." ./defence
+cp -a "${REPO_CONTAINER_PATH}/defences/${defence_name}/." ./defence
 
 cp "${CONTAINER_SCRIPTS_PATH}/load_weights.py" ./
 python ./load_weights.py --codec_name "${codec_name}"
@@ -65,7 +67,7 @@ python ./run.py --test-dataset "${TEST_DATASET_NAMES[@]}" \
 source loss_f.txt
 zip -r dumps.zip ./dumps
 echo "Loss name ${LOSS_NAME}"
-mkdir -p "${artifacts_path}/csvs/${LOSS_NAME}/no_defence/${attack_preset}/${attack_name}/${codec_name}/"
-mkdir -p "${artifacts_path}/dumps/${LOSS_NAME}/no_defence/${attack_preset}/${attack_name}/${codec_name}/"
-mv ./dumps.zip "${artifacts_path}/dumps/${LOSS_NAME}/no_defence/${attack_preset}/${attack_name}/${codec_name}/"
-mv ./artifacts/*.csv "${artifacts_path}/csvs/${LOSS_NAME}/no_defence/${attack_preset}/${attack_name}/${codec_name}/"
+mkdir -p "${artifacts_path}/csvs/${LOSS_NAME}/${defence_name}/${attack_preset}/${attack_name}/${codec_name}/"
+mkdir -p "${artifacts_path}/dumps/${LOSS_NAME}/${defence_name}/${attack_preset}/${attack_name}/${codec_name}/"
+mv ./dumps.zip "${artifacts_path}/dumps/${LOSS_NAME}/${defence_name}/${attack_preset}/${attack_name}/${codec_name}/"
+mv ./artifacts/*.csv "${artifacts_path}/csvs/${LOSS_NAME}/${defence_name}/${attack_preset}/${attack_name}/${codec_name}/"

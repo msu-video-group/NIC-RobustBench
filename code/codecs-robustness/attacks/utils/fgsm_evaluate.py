@@ -759,6 +759,7 @@ def test_main(attack_callback):
         if is_jpegai:
             defended_main_codec = dfnd.CodecModel(main_codec, dfnce.Defense(), args.device)
     defence_name = defended_model.defence.defence_name
+    print(defence_name)
 
     defended_model.eval()
     batch_size = 1

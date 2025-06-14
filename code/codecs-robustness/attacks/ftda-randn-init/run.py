@@ -78,7 +78,7 @@ def attack(compress_image, model=None, device='cpu', is_jpegai=False, loss_func=
                 loss_dist.backward()
                 opt_d.step()
                 loss_dist = 100 * torch.nn.MSELoss(reduction='mean')(p, torch.zeros_like(p).to(device)) / (input_range * input_range)
-                print("LESS", loss_dist)
+                # print("LESS", loss_dist)
 
     res_image = compress_image + p
     res_image = (res_image).data.clamp_(min=0, max=input_range)

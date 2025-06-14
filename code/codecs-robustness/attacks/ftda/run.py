@@ -25,7 +25,7 @@ from fgsm_evaluate import test_main
 def attack(compress_image, model=None, device='cpu', is_jpegai=False, loss_func=None, loss_func_name='undefined',
            lr = 0.2, THRESH = 0.0006, iters = 100, lr_d = 0.1):
 
-    print(f'LOSS: {loss_func_name}')
+    # print(f'LOSS: {loss_func_name}')
     input_range = 1
 
     if hasattr(model, 'input_range'):
@@ -60,14 +60,14 @@ def attack(compress_image, model=None, device='cpu', is_jpegai=False, loss_func=
         decompr, likelihoods, bpp_loss = compression_results['x_hat'], compression_results['likelihoods'], compression_results['bpp']
         loss_adv = loss_func(src_image, res, decompr_src, decompr, bpp_loss, is_jpegai)
         loss_dist = torch.nn.MSELoss(reduction='mean')(p, torch.zeros_like(p).to(device)) / (input_range * input_range)
-        print(loss_dist, loss_adv, res.dtype)
+        # print(loss_dist, loss_adv, res.dtype)
 
         if loss_dist < THRESH:
-            print("UP")
+            # print("UP")
             cur_loss = loss_adv
             optim = opt
         else:
-            print("DOWN")
+            # print("DOWN")
             cur_loss = 10000 * loss_dist
             optim = opt_d
 
@@ -84,7 +84,7 @@ def attack(compress_image, model=None, device='cpu', is_jpegai=False, loss_func=
                 loss_dist.backward()
                 opt_d.step()
                 loss_dist = 100 * torch.nn.MSELoss(reduction='mean')(p, torch.zeros_like(p).to(device)) / (input_range * input_range)
-                print("LESS", loss_dist)
+                # print("LESS", loss_dist)
 
     res_image = compress_image + p
     res_image = (res_image).data.clamp_(min=0, max=input_range)
