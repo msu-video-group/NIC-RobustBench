@@ -59,8 +59,10 @@ class Defense:
         self.defence_model.eval()
         self.defence_name = 'diffpure'
 
-    def __call__(self, image):
+    def preprocess(self, image):
         self.defence_model.to(image.device)
         res = self.defence_model(image)
         return res.clamp(0.0, 1.0)
-   
+
+    def postprocess(self, image):
+        return image

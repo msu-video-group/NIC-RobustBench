@@ -1,11 +1,12 @@
 import torch
-from torchvision import transforms
 
 
 class Defense:
     def __init__(self):
         self.defence_name = 'no-defence'
-        pass
 
-    def __call__(self, image):
+    def preprocess(self, image):
+        return image
+
+    def postprocess(self, image):
         return image
