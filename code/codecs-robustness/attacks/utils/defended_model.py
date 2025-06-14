@@ -27,5 +27,7 @@ class CodecModel(torch.nn.Module):
         
     
     def forward(self, image, **kwargs):
-        image = self.defence(image)
-        return self.model(image, **kwargs)
+        preprocessed = self.defence.preprocess(image)
+        out = self.model(preprocessed, **kwargs)
+        out['x_hat'] = self.defence.postprocess(out['x_hat'])
+        return out

@@ -32,7 +32,7 @@ sudo docker build -f jpegai.Dockerfile -t codecs_jpegai .
  
 # run attack
 chmod +x launch.sh
-./launch.sh {attack_preset} {loss_name} {attack_name} {codec_name} {gpu_id}
+./launch.sh {attack_preset} {loss_name} {attack_name} {codec_name} {defence_name} {gpu_id}
 
 # example of launching
 ./launch.sh 0 bpp_increase_loss random-noise jpegai-v51-hop-b05 0
