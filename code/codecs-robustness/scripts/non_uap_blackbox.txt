@@ -1,7 +1,0 @@
-grad-est
-parsimonious
-square-attack
-l0-rs
-patch-rs
-frame-rs
-onepixel

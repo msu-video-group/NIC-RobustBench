@@ -1,8 +1,0 @@
-
-variables:
-  LAUNCH_ID: "$CI_PIPELINE_ID"
-
-include:
-  - local: scripts/runner.yml
-  - local: codecs/ci.yml
-  - local: attacks/ci.yml

@@ -1,8 +1,0 @@
-cumulative-uap
-uap
-generative-uap
-cnn-attack
-grad-est-uap
-square-attack-uap
-diff-evolve-uap
-parsimonious-uap

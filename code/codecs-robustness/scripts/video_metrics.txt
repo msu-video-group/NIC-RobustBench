@@ -1,5 +1,0 @@
-vsfa
-mdtvsfa
-compressed-vqa-fr
-compressed-vqa-nr
-vmaf-by-26m-hre

@@ -1,58 +1,53 @@
-# <img align="left" width="100" height="100" src="imgs/logo.png"> NIC-RobustBench
+# Academic Project Page Template
+This is an academic paper project page template.
 
-A Comprehensive Open-Source Toolkit for Neural Image Compression and Robustness Analysis. Please refer to the paper for more details:
 
-![Benchmark scheme](imgs/all_scheme.png)
+Example project pages built using this template are:
+- https://horwitz.ai/probex
+- https://vision.huji.ac.il/probegen
+- https://horwitz.ai/mother
+- https://horwitz.ai/spectral_detuning
+- https://vision.huji.ac.il/ladeda
+- https://vision.huji.ac.il/dsire
+- https://horwitz.ai/podd
+- https://dreamix-video-editing.github.io
+- https://horwitz.ai/conffusion
+- https://horwitz.ai/3d_ads/
+- https://vision.huji.ac.il/ssrl_ad
+- https://vision.huji.ac.il/deepsim
 
-## :sparkles: Features
-- **13+ Neural Image Codecs** (e.g., JPEGAI v7.1, HiFiC, etc.)  
-- **7 Adversarial Attack Algorithms** with **12 loss functions**  
-- **Plug-and-Play API** — add your own codec or attack in <50 LOC  
-- **One-command Experiments** via Docker + `launch.sh`  
-- **Three launching options** — Docker, Slurm and GitLab CI/CD
 
-## :whale: Prerequisites
-- Docker 23+ with NVIDIA Container Toolkit
-- 40 Gb of GPU RAM
-- We provide Dockerfiles with complete list of requirements
 
-## :zap: Quick Start
-Visit [GitLab repository](https://vg-code.gml-team.ru/framework/codecs-robustness) to find out more about GitLab CI/CD launch.
+## Start using the template
+To start using the template click on `Use this Template`.
 
-```bash
-# Download source code
-git pull https://github.com/msu-video-group/NIC-RobustBench
-cd NIC-RobustBench
+The template uses html for controlling the content and css for controlling the style. 
+To edit the websites contents edit the `index.html` file. It contains different HTML "building blocks", use whichever ones you need and comment out the rest.  
 
-# build docker images
-# if you change image names, please change DOCKER_IMAGE and DOCKER_IMAGE_JPEGAI variables accordingly in launch.sh script
-sudo docker build -f main.Dockerfile -t codecs_main . 
-sudo docker build -f jpegai.Dockerfile -t codecs_jpegai .
-# note that building can take up to 20-30 minutes
- 
-# run attack
-chmod +x launch.sh
-./launch.sh {attack_preset} {loss_name} {attack_name} {codec_name} {gpu_id}
+**IMPORTANT!** Make sure to replace the `favicon.ico` under `static/images/` with one of your own, otherwise your favicon is going to be a dreambooth image of me.
 
-# example of launching
-./launch.sh 0 bpp_increase_loss random-noise jpegai-v51-hop-b05 0
+## Components
+- Teaser video
+- Images Carousel
+- Youtube embedding
+- Video Carousel
+- PDF Poster
+- Bibtex citation
 
-# to launch a set of attacks/codecs you can edit launch_all.sh script
-# configure launch_all.sh to run desired attacks/codecs 
-chmod +x launch.sh launch_all.sh
-./launch_all.sh
-```
+## Tips:
+- The `index.html` file contains comments instructing you what to replace, you should follow these comments.
+- The `meta` tags in the `index.html` file are used to provide metadata about your paper 
+(e.g. helping search engine index the website, showing a preview image when sharing the website, etc.)
+- The resolution of images and videos can usually be around 1920-2048, there rarely a need for better resolution that take longer to load. 
+- All the images and videos you use should be compressed to allow for fast loading of the website (and thus better indexing by search engines). For images, you can use [TinyPNG](https://tinypng.com), for videos you can need to find the tradeoff between size and quality.
+- When using large video files (larger than 10MB), it's better to use youtube for hosting the video as serving the video from the website can take time.
+- Using a tracker can help you analyze the traffic and see where users came from. [statcounter](https://statcounter.com) is a free, easy to use tracker that takes under 5 minutes to set up. 
+- This project page can also be made into a github pages website.
+- Replace the favicon to one of your choosing (the default one is of the Hebrew University). 
+- Suggestions, improvements and comments are welcome, simply open an issue or contact me. You can find my contact information at [https://horwitz.ai](https://horwitz.ai)
 
-Be aware that the first time script is launching it will download all necessary weights of about 10 Gb. To download them manually run in the root of directory:
-```bash
-wget --backups=1 -nv https://titan.gml-team.ru:5003/fsdownload/o3kmmUJdU/models.zip \
-         https://titan.gml-team.ru:5003/fsdownload/o3kmmUJdU/models.zip && rm models.zip.1
-```
+## Acknowledgments
+Parts of this project page were adopted from the [Nerfies](https://nerfies.github.io/) page.
 
-#### Datasets
-We include one image from each of BSDS, NIPS2017, Kodak PhotoCD and CityScapes datasets in this repository. You can download these datasets completely via:
-```bash
-wget --backups=1 -nv https://titan.gml-team.ru:5003/fsdownload/Hy8LfJM6e/codec-datasets.zip https://titan.gml-team.ru:5003/fsdownload/Hy8LfJM6e/codec-datasets.zip && codec-datasets.zip.1 
-```
-
-You can add any new dataset in the *datasets/codec-datasets* folder. If you do so, change TEST_DATASET_NAMES and TEST_DATASET_PATHS variables in scripts-docker/env_vars.sh accordingly. **Make sure each dataset subfolder contains at least one image.**
+## Website License
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.

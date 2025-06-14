@@ -1,7 +1,0 @@
-koncept
-linearity
-maniqa
-meta-iqa
-spaq
-paq2piq
-fpr
