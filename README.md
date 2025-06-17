@@ -2,19 +2,26 @@
 
 A Comprehensive Open-Source Toolkit for Neural Image Compression and Robustness Analysis. Please refer to the paper for more details:
 
-![Benchmark scheme](imgs/all_scheme.png)
+![Benchmark scheme](imgs/scheme1.png)
 
 ## :sparkles: Features
-- **13+ Neural Image Codecs** (e.g., JPEGAI v7.1, HiFiC, etc.)  
+
+![Benchmark Features](imgs/scheme2.png)
+<!-- - **13+ Neural Image Codecs** (e.g., JPEGAI v7.1, HiFiC, etc.)  
 - **7 Adversarial Attack Algorithms** with **12 loss functions**  
 - **Plug-and-Play API** — add your own codec or attack in <50 LOC  
 - **One-command Experiments** via Docker + `launch.sh`  
-- **Three launching options** — Docker, Slurm and GitLab CI/CD
+- **Three launching options** — Docker, Slurm and GitLab CI/CD -->
 
 ## :whale: Prerequisites
 - Docker 23+ with NVIDIA Container Toolkit
 - 40 Gb of GPU RAM
 - We provide Dockerfiles with complete list of requirements
+
+![Attack example](imgs/attack_example.png)
+<center>
+Attack example on JPEG AI v5.1.
+</center>
 
 ## :zap: Quick Start
 Visit [GitLab repository](https://vg-code.gml-team.ru/framework/codecs-robustness) to find out more about GitLab CI/CD launch.
