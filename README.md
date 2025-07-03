@@ -63,3 +63,6 @@ wget --backups=1 -nv https://titan.gml-team.ru:5003/fsdownload/Hy8LfJM6e/codec-d
 ```
 
 You can add any new dataset in the *datasets/codec-datasets* folder. If you do so, change TEST_DATASET_NAMES and TEST_DATASET_PATHS variables in scripts-docker/env_vars.sh accordingly. **Make sure each dataset subfolder contains at least one image.**
+
+## :zap: Tutorial video
+[![NIC-RobustBench video](https://img.youtube.com/vi/SgZ1WezyG2c/0.jpg)](https://www.youtube.com/watch?v=SgZ1WezyG2c)
